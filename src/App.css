@@ -1,0 +1,33 @@
+
+.app {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.app-header {
+  display: flex;
+  margin-left: 2em;
+}
+
+.app-content {
+  flex-grow: 1;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-footer {
+  color: grey;
+}
+
+.app-button {
+  background-color: transparent;
+  border: 1px solid #888;
+  padding: 1em;
+}
