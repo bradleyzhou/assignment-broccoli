@@ -13,7 +13,7 @@ function InviteModal(props) {
   }, [show]);
 
   return !show ? null : (
-    <div className="modal-content">
+    <>
       <h1 className="modal-title">Request an invite</h1>
       <div className="modal-separator"></div>
       <form className="modal-form">
@@ -22,7 +22,7 @@ function InviteModal(props) {
         <input type="text" placeholder="Confirm Email" name="email_confirm" />
         <button type="submit" className="send app-button" onClick={onSuccess}>Send</button>
       </form>
-    </div>
+    </>
   );
 }
 

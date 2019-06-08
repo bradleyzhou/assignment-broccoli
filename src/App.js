@@ -43,8 +43,10 @@ function App() {
         <p>© 2019 Broccoli & Co. All rights reserved.</p>
       </footer>
       <div className="modal" ref={modalEl}>
-        <InviteModal show={inviteShown} onSuccess={onInviteSent}/>
-        <DoneModal show={done} closer={closeModal} />
+        <div className="modal-content">
+          <InviteModal show={inviteShown} onSuccess={onInviteSent}/>
+          <DoneModal show={done} closer={closeModal} />
+        </div>
       </div>
     </div>
   );
