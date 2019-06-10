@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { useNameInput, useEmailInput } from './ValidInputHooks';
+import { requestInvite } from './RequestInvite';
 import "./InviteModal.css"
 
 function InviteModal(props) {
@@ -25,6 +25,8 @@ function InviteModal(props) {
     onChangeConfirm, confirm, isConfirmValid, checkIsConfirmEmpty, clearConfirm,
   } = useEmailInput('');
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const doSubmit = () => {
     if ([checkIsNameEmpty(), checkIsEmailEmpty(), checkIsConfirmEmpty()].some(v => v)) {
       // since we allow the input fields to be empty while typing, we should check it here when submit
@@ -32,11 +34,9 @@ function InviteModal(props) {
     }
 
     setSending(true);
+    setErrorMessage('');
 
-    axios.post('https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth', {
-      name,
-      email,
-    })
+    requestInvite(name, email)
     .then(() => {
       onSuccess();
       clearName();
@@ -44,7 +44,8 @@ function InviteModal(props) {
       clearConfirm();
     })
     .catch((err) => {
-      console.log(err)
+      const msg = err.response.data.errorMessage;
+      setErrorMessage(msg);
     })
     .finally(() => {
       setSending(false);
@@ -74,6 +75,7 @@ function InviteModal(props) {
         >
           {sending ? "Sending, please wait ...": "Send"}
         </button>
+        <div className="validation-error">{errorMessage}</div>
       </form>
     </>
   );
