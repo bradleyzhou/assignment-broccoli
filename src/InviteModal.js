@@ -12,13 +12,11 @@ export function useNameInput(initialValue = '') {
   const [isValid, setIsValid] = useState(true);
   useEffect(() => {
     const dirty = (value !== initialValue);
-    setIsDirty(dirty);
-    if (dirty && value.length < 3) {
-      // only if user has actual input do we check for username
-      setIsValid(false);
-    } else {
-      setIsValid(true);
-    }
+    (dirty !== isDirty) && setIsDirty(dirty);
+
+    // only if user has actual input do we check for name validity
+    const valid = !(dirty && value.length < 3);
+    (valid !== isValid) && setIsValid(valid);
   }, [value]);
 
   return { onChange, value, isValid, isDirty }
