@@ -20,21 +20,44 @@ function InviteModal(props) {
     onChangeName, name, isNameValid, checkIsNameEmpty, clearName,
   } = useNameInput('');
 
+  const {
+    onChangeEmail, email, isEmailValid, checkIsEmailEmpty, clearEmail,
+    onChangeConfirm, confirm, isConfirmValid, checkIsConfirmEmpty, clearConfirm,
+  } = useEmailInput('');
+
+  const doSubmit = () => {
+    if ([checkIsNameEmpty(), checkIsEmailEmpty(), checkIsConfirmEmpty()].some(v => v)) {
+      // since we allow the input fields to be empty while typing, we should check it here when submit
+      return;
+    }
+
+    setSending(true);
+
+  };
+
   return !show ? null : (
     <>
       <h1 className="modal-title">Request an invite</h1>
       <div className="modal-separator"></div>
-      <form className="modal-form" onSubmit={onSuccess}>
+      <form className="modal-form">
         <input type="text" placeholder="Full Name" name="name"
-          onChange={onNameChange} value={nameValue}
-          ref={initInputEl} />
-        { isNameDirty && !isNameValid &&
-          <div className="validation-error">
-            {isNameValid ? 'valid name' : 'invalid name'}
-          </div> }
-        <input type="text" placeholder="Enter Email" name="email" />
-        <input type="text" placeholder="Confirm Email" name="email_confirm" />
-        <button type="submit" className="send app-button">Send</button>
+          onChange={onChangeName} value={name}
+          className={isNameValid ? "valid" : "invalid"}
+          ref={initInputEl}
+        />
+        <input type="text" placeholder="Enter Email" name="email"
+          onChange={onChangeEmail} value={email}
+          className={isEmailValid ? "valid" : "invalid"}
+        />
+        <input type="text" placeholder="Confirm Email" name="email_confirm"
+          onChange={onChangeConfirm} value={confirm}
+          className={isConfirmValid ? "valid" : "invalid"}
+        />
+        <button type="button" onClick={doSubmit} className="send app-button"
+         disabled={sending}
+        >
+          {sending ? "Sending, please wait ...": "Send"}
+        </button>
       </form>
     </>
   );
