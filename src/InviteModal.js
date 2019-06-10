@@ -33,6 +33,22 @@ function InviteModal(props) {
 
     setSending(true);
 
+    axios.post('https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth', {
+      name,
+      email,
+    })
+    .then(() => {
+      onSuccess();
+      clearName();
+      clearEmail();
+      clearConfirm();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      setSending(false);
+    });
   };
 
   return !show ? null : (
