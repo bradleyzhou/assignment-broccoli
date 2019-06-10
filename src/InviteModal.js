@@ -1,39 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import { useNameInput, useEmailInput } from './ValidInputHooks';
 import "./InviteModal.css"
-
-export function useNameInput(initialValue = '') {
-  const [value, setValue] = useState(initialValue);
-
-  const onChange = (e) => {
-    setValue(e.target.value);
-  };
-
-  const [isDirty, setIsDirty] = useState(false);
-  const [isValid, setIsValid] = useState(true);
-  useEffect(() => {
-    const dirty = (value !== initialValue);
-    (dirty !== isDirty) && setIsDirty(dirty);
-
-    // only if user has actual input do we check for name validity
-    const valid = !(dirty && value.length < 3);
-    (valid !== isValid) && setIsValid(valid);
-  }, [value]);
-
-  return { onChange, value, isValid, isDirty }
-}
-
-export function useEmailInput(initialValue = '') {
-  const [value, setValue] = useState(initialValue);
-  const [confirm, setConfirm] = useState(initialValue);
-  const onChangeValue = e => setValue(e.target.value);
-  const onChangeConfirm = e => setConfirm(e.target.value);
-  return { onChangeValue, value, onChangeConfirm, confirm }
-}
 
 function InviteModal(props) {
   const { show, onSuccess } = props;
 
   const initInputEl = useRef(null);
+
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     if (show) {
@@ -42,10 +17,7 @@ function InviteModal(props) {
   }, [show]);
 
   const {
-    onChange: onNameChange,
-    value: nameValue,
-    isValid: isNameValid,
-    isDirty: isNameDirty,
+    onChangeName, name, isNameValid, checkIsNameEmpty, clearName,
   } = useNameInput('');
 
   return !show ? null : (
