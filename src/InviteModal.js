@@ -33,6 +33,10 @@ function InviteModal(props) {
       return;
     }
 
+    if (!isNameValid || !isEmailValid || !isConfirmValid) {
+      return;
+    }
+
     setSending(true);
     setErrorMessage('');
 
