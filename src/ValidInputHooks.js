@@ -2,9 +2,15 @@ import { useState, useEffect } from 'react';
 
 /**
  * Creates a custom hook for the validation of an input element.
- * @param {string} initialValue 
- * @param {function} validator 
- * @param {[string]} triggers 
+ * This can be used as a template for different types of input elements.
+ *
+ * Example:
+ * ```jsx
+ *   const {onChange, value, isValid, checkIsEmpty, clearValue} = useValidInput();
+ *   <input onChange={onChange} value={value} className={isValid ? "valid" : "invalid"}/>
+ *   checkIsEmpty(); // will change isValid to false if value is an empty string
+ *   clearValue();   // will reset the value to initialValue
+ * ```
  */
 function useValidInput(initialValue = '', validator = () => true, triggers = []) {
   const [value, setValue] = useState(initialValue);
@@ -32,7 +38,10 @@ function useValidInput(initialValue = '', validator = () => true, triggers = [])
 
   return { onChange, value, isValid, checkIsEmpty, clearValue };
 }
-  
+
+/**
+ * A hook for an <input> for user name.
+ */
 export function useNameInput() {
   const validator = (value) => value.length >= 3;
 
@@ -48,8 +57,12 @@ export function useNameInput() {
 }
 
 // taken from https://stackoverflow.com/a/46181/1779202
+// eslint-disable-next-line no-useless-escape
 let EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+/**
+ * A hook for two <input> (an email and a confirm email).
+ */
 export function useEmailInput() {
   const emailValidator = email => EMAIL_REGEX.test(email);
   const {
