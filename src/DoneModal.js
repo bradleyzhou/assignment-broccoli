@@ -1,5 +1,4 @@
 import React from 'react';
-import "./DoneModal.css"
 
 function DoneModal(props) {
   const {show, closer} = props;
@@ -10,7 +9,7 @@ function DoneModal(props) {
       <div className="modal-separator"></div>
       <form className="modal-form">
         <p>You will be one of the first to experience Broccoli & Co. when we launch.</p>
-        <button type="button" className="modal-ok app-button" onClick={closer}>OK</button>
+        <button type="button" className="modal-action button" onClick={closer}>OK</button>
       </form>
     </>
   );

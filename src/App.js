@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import InviteModal from './InviteModal';
 import DoneModal from './DoneModal';
 import './normalize.css';
-import './App.css';
-import './Modal.css';
+import './App.scss';
+import './Modal.scss';
 
 function App() {
   const [modalCanvasShown, setModalCanvasShown] = useState(false);
@@ -32,7 +32,7 @@ function App() {
       <div className="app-content">
         <h1 className="banner-title">A better way<br />to enjoy every day.</h1>
         <p className="banner-subtitle">Be the first to know when we launch.</p>
-        <button className="request-invite app-button" onClick={showModal}>Request an invite</button>
+        <button className="request-invite button" onClick={showModal}>Request an invite</button>
       </div>
       <footer className="app-footer">
         <p>Made with ❤ in Shanghai.</p>

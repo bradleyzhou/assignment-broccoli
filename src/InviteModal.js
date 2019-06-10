@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNameInput, useEmailInput } from './ValidInputHooks';
 import { requestInvite } from './RequestInvite';
-import "./InviteModal.css"
+import "./InviteModal.scss"
 
 function InviteModal(props) {
   const { show, onSuccess } = props;
@@ -74,7 +74,7 @@ function InviteModal(props) {
           onChange={onChangeConfirm} value={confirm}
           className={isConfirmValid ? "valid" : "invalid"}
         />
-        <button type="button" onClick={doSubmit} className="send app-button"
+        <button type="button" onClick={doSubmit} className="modal-action button"
          disabled={sending}
         >
           {sending ? "Sending, please wait ...": "Send"}
