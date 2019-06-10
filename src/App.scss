@@ -1,6 +1,8 @@
 @import 'colors';
 @import 'sizes';
 
+$button-inset: inset 0 0 2px $text-color-dark;
+
 .app {
   display: flex;
   flex-direction: column;
@@ -57,11 +59,11 @@
 
   &:focus {
     outline: none;
-    box-shadow: inset 0 0 4px $text-color-dark;
+    box-shadow: $button-inset;
   }
 
   &:hover {
-    box-shadow: inset 0 0 4px $text-color-dark;
+    box-shadow: $button-inset;
   }
 }
 
