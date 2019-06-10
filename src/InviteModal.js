@@ -3,6 +3,9 @@ import { useNameInput, useEmailInput } from './ValidInputHooks';
 import { requestInvite } from './RequestInvite';
 import "./InviteModal.scss"
 
+/**
+ * The invite modal component. Must be wrapped in an element of .modal-canvas > .modal-content
+ */
 function InviteModal(props) {
   const { show, onSuccess } = props;
 

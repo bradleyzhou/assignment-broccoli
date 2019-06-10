@@ -41,6 +41,14 @@ function useValidInput(initialValue = '', validator = () => true, triggers = [])
 
 /**
  * A hook for an <input> for user name.
+ * 
+ * Example:
+ * ```jsx
+ *   const {onChangeName, name, isNameValid, checkIsNameEmpty, clearName} = useNameInput();
+ *   <input onChange={onChangeName} value={name} className={isNameValid ? "valid" : "invalid"} />
+ *   checkIsNameEmpty(); // will change isNameValid to false if name is an empty string
+ *   clearName();   // will reset the name to ''
+ * ```
  */
 export function useNameInput() {
   const validator = (value) => value.length >= 3;
@@ -61,7 +69,22 @@ export function useNameInput() {
 let EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 /**
- * A hook for two <input> (an email and a confirm email).
+ * A hook for two <input> dealing with email (an email and a confirm email).
+ * 
+ * * Example:
+ * ```jsx
+ *   const {
+ *     onChangeEmail, email, isEmailValid, checkIsEmailEmpty, clearEmail,
+ *     onChangeConfirm, confirm, isConfirmValid, checkIsConfirmEmpty, clearConfirm,
+ *   } = useEmailInput();
+ *   <input onChange={onChangeEmail} value={email} className={isEmailValid ? "valid" : "invalid"} />
+ *   <input onChange={onChangeConfirm} value={confirm}
+ *          className={isConfirmValid ? "valid" : "invalid"} />
+ *   checkIsEmailEmpty(); // will change isEmailValid to false if email is an empty string
+ *   checkIsConfirmEmpty(); // will change isConfirmValid to false if confirm-email is an empty string
+ *   clearEmail();   // will reset email to ''
+ *   clearConfirm();   // will reset confirm-email to ''
+ * ```
  */
 export function useEmailInput() {
   const emailValidator = email => EMAIL_REGEX.test(email);

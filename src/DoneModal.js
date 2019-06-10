@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * The done modal component. Must be wrapped in an element of .modal-canvas > .modal-content
+ * Closes the modal when clicking OK.
+ */
 function DoneModal(props) {
   const {show, closer} = props;
 

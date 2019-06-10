@@ -5,6 +5,9 @@ import './normalize.css';
 import './App.scss';
 import './Modal.scss';
 
+/**
+ * The app component for Broccoli & Co.
+ */
 function App() {
   const [modalCanvasShown, setModalCanvasShown] = useState(false);
   const [inviteShown, setInviteShown] = useState(false);
@@ -15,11 +18,13 @@ function App() {
     setDone(false);
     setInviteShown(true);
   }
+
   const closeModal = () => {
     setModalCanvasShown(false);
   }
 
   const onInviteSent = () => {
+    // When invite is successfully registered, show the DoneModal
     setInviteShown(false);
     setDone(true);
   }
