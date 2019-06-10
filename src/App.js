@@ -1,26 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import InviteModal from './InviteModal';
+import DoneModal from './DoneModal';
 import './normalize.css';
 import './App.css';
 import './Modal.css';
-import DoneModal from './DoneModal';
 
 function App() {
-  const [modalShown, setModalShown] = useState(false);
+  const [modalCanvasShown, setModalCanvasShown] = useState(false);
   const [inviteShown, setInviteShown] = useState(false);
   const [done, setDone] = useState(false);
 
-  const modalEl = useRef(null);
-
   const showModal = () => {
-    setModalShown(true);
+    setModalCanvasShown(true);
     setDone(false);
     setInviteShown(true);
-    modalEl.current.style.display = "block";
   }
   const closeModal = () => {
-    showModal(false);
-    modalEl.current.style.display = "none";
+    setModalCanvasShown(false);
   }
 
   const onInviteSent = () => {
@@ -42,12 +38,14 @@ function App() {
         <p>Made with ❤ in Shanghai.</p>
         <p>© 2019 Broccoli & Co. All rights reserved.</p>
       </footer>
-      <div className="modal" ref={modalEl}>
-        <div className="modal-content">
-          <InviteModal show={inviteShown} onSuccess={onInviteSent}/>
-          <DoneModal show={done} closer={closeModal} />
+      {modalCanvasShown &&
+        <div className="modal-canvas">
+          <div className="modal-content">
+            <InviteModal show={inviteShown} onSuccess={onInviteSent}/>
+            <DoneModal show={done} closer={closeModal} />
+          </div>
         </div>
-      </div>
+      }
     </div>
   );
 }
