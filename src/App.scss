@@ -59,10 +59,9 @@ $button-inset: inset 0 0 2px $text-color-dark;
 
   &:focus {
     outline: none;
-    box-shadow: $button-inset;
   }
 
-  &:hover {
+  &:focus, &:hover {
     box-shadow: $button-inset;
   }
 }

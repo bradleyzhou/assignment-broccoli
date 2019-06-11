@@ -25,3 +25,14 @@
   } 
 }
 
+.button {
+  &[disabled] {
+    color: $text-color-light;
+    border: $box-border-size solid $text-color-light;
+
+    &:focus, &:hover {
+      box-shadow: none;
+    }
+  }
+}
+
