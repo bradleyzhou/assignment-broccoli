@@ -1,10 +1,12 @@
 import axios from 'axios';
 
+export const requestInviteUrl = 'https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth';
+
 /**
  * Send a request-invite to the backend API.
  */
 export function requestInvite(name, email) {
-  return axios.post('https://l94wc2001h.execute-api.ap-southeast-2.amazonaws.com/prod/fake-auth', {
+  return axios.post(requestInviteUrl, {
     name,
     email,
   });
