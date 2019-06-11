@@ -1,0 +1,72 @@
+@import 'colors';
+@import 'sizes';
+
+$button-inset: inset 0 0 2px $text-color-dark;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+  text-align: center;
+  color: $text-color;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.app-header {
+  display: flex;
+  background-color: $background-color-light;
+}
+
+.header-item {
+  margin-left: 2em;
+  font-size: $text-large;
+}
+
+.app-content {
+  flex-grow: 1;
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-title {
+  font-size: $text-xlarge;
+  margin: 1em 1em 0 1em;
+}
+
+.banner-subtitle {
+  font-size: $text-medium;
+  margin: 2em 1em;
+}
+
+.app-footer {
+  background-color: $background-color-light;
+  color: grey;
+  font-size: $text-small;
+  font-style: italic;
+}
+
+.button {
+  background-color: transparent;
+  color: $text-color;
+  border: $box-border-size solid $text-color;
+  padding: 1em;
+  box-sizing: content-box;
+
+  &:focus {
+    outline: none;
+    box-shadow: $button-inset;
+  }
+
+  &:hover {
+    box-shadow: $button-inset;
+  }
+}
+
+.request-invite {
+  margin: 0 1em 1em 1em;
+}
