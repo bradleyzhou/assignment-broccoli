@@ -3,7 +3,7 @@ A simple single-page web application for Broccoli & Co.
 
 ## Install
 
-To install, just clone/pull this repo and run `npm install`:
+To install, just clone/pull this repo and run `npm install` (expects node version 10):
 
 ```bash
 git clone git@github.com:bradleyzhou/assignment-broccoli.git
